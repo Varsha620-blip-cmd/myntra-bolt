@@ -5,7 +5,7 @@ import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
 import { AuthProvider } from '@/hooks/useAuth';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -29,9 +29,30 @@ export default function RootLayout() {
   // Prevent rendering until the font has loaded or an error was returned
   if (!fontsLoaded && !fontError) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#E91E63' }}>
-        <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>Myntra</Text>
-        <Text style={{ color: 'white', fontSize: 12, marginTop: 8 }}>Loading...</Text>
+      <View style={{ 
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: '#E91E63' 
+      }}>
+        <Text style={{ 
+          color: 'white', 
+          fontSize: 32, 
+          fontWeight: 'bold',
+          letterSpacing: 2,
+          marginBottom: 20
+        }}>
+          Myntra
+        </Text>
+        <ActivityIndicator size="large" color="white" />
+        <Text style={{ 
+          color: 'white', 
+          fontSize: 14, 
+          marginTop: 16,
+          opacity: 0.8
+        }}>
+          Loading your shopping experience...
+        </Text>
       </View>
     );
   }
